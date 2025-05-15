@@ -30,10 +30,18 @@ def reset_db():
         port=os.getenv("DB_PORT")
     )
     cur = conn.cursor()
-    cur.execute("""
-        DROP TABLE Movies, Crew, Actors, Reviews, Users;
-    """)
-
+    try:   
+        cur.execute("""
+            DROP TABLE Movies, Crew, Actors, Reviews, Users;
+        """)
+    except Exception as err:
+        print(err)
+        cur.close()
+        conn.close()
+        return
+    conn.commit()
+    cur.close()
+    conn.close()
     print("All tables dropped")
 
 wait_for_db()
