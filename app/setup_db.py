@@ -122,6 +122,7 @@ def seed_movies():
                     cur.close()
                     conn.close()
                     return
+            # seed director
             crew = row[3]
             crew_json = json.loads(crew)
             for c in crew_json:

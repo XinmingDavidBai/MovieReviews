@@ -1,7 +1,7 @@
 import psycopg2
 import os
 import time
-import csv
+
 from dotenv import load_dotenv
 
 load_dotenv()
