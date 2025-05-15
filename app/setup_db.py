@@ -38,6 +38,5 @@ def create_tables():
     conn.close()
     print("Tables created.")
 
-if __name__ == "__main__":
-    wait_for_db()
-    create_tables()
+wait_for_db()
+create_tables()

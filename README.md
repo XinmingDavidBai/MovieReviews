@@ -1,6 +1,6 @@
 # MovieReviews - Flask + PostgreSQL + pgAdmin (Dockerized)
 
-## 🚀 How to Run
+## How to Run
 
 1. Make sure you have Docker installed
 2. Run:
