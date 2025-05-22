@@ -1,2 +1,2 @@
 .env
-app/__pycache__/*
+/MovieReviewsApp/__pycache__
