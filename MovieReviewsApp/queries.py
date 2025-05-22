@@ -1,5 +1,4 @@
-from MovieReviewsApp import cur, conn
-from psycopg2 import sql
+from .db import cur
 
 # SELECT
 #   Movies.MovieId,
