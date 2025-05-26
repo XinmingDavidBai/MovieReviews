@@ -84,7 +84,7 @@ def seed_movies():
         port=os.getenv("DB_PORT")
     )
     cur = conn.cursor()
-    path = "app/data/tmdb_5000_credits.csv"
+    path = "MovieReviewsApp/data/tmdb_5000_credits.csv"
     with open(path) as data_file:
         all_data = list(csv.reader(data_file))
         shaved_data = all_data[1:100]

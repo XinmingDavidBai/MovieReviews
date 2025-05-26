@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+<html>
+<head><title>Movie Search</title></head>
 <body>
-  <form method="GET" action="/search">
-    <input type="text" name="query" placeholder="Search for movie" required>
-    <button type="submit">Search</button>
-  </form>
-  <h1>Results for "{{ query }}"</h1>
-  {% if query %}
+    <h1>Search Movies</h1>
+    <form method="GET" action="/">
+        <input type="text" name="query" value="{{ query }}" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
         <h2>Results for "{{ query }}"</h2>
         {% if results %}
             <ul>
-                {% for title, year in results %}
-                    <li>{{ title }} ({{ year }})</li>
-                {% endfor %}
+            {% for movieid, moviename in results %}
+                <li>{{ moviename }} (ID: {{ movieid }})</li>
+            {% endfor %}
             </ul>
         {% else %}
-            <p>No movies found.</p>
+            <p>No results found.</p>
         {% endif %}
     {% endif %}
 </body>
