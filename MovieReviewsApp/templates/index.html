@@ -6,11 +6,22 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Data from Database</h1>
-    <ul>
-        {% for row in data %}
-            <li>ID: {{ row[0] }}, Name: {{ row[1] }}, Rating: {{ row[2] }}</li>
-        {% endfor %}
-    </ul>
+  <form method="GET" action="/search">
+    <input type="text" name="query" placeholder="Search for movie" required>
+    <button type="submit">Search</button>
+  </form>
+  <h1>Results for "{{ query }}"</h1>
+  {% if query %}
+        <h2>Results for "{{ query }}"</h2>
+        {% if results %}
+            <ul>
+                {% for title, year in results %}
+                    <li>{{ title }} ({{ year }})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No movies found.</p>
+        {% endif %}
+    {% endif %}
 </body>
 </html>
