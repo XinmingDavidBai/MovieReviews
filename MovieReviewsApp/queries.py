@@ -1,4 +1,4 @@
-from .db import cur
+from .db import cur, conn
 
 def get_all_movies_with_rating():
     sql = """
@@ -30,5 +30,15 @@ def movies_with_actors():
     result = cur.fetchall()
     cur.close()
     return result
+
+def search_movies(query):
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT movieid, moviename FROM movies WHERE moviename ILIKE %s",
+        (f"%{query}%",)
+    )
+    results = cur.fetchall()
+    cur.close()
+    return results
 
 
