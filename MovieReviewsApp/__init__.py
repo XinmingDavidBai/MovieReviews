@@ -7,4 +7,12 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template("index.html", data = get_all_movies_with_rating())
+    query = request.args.get('query', '')
+    results = []
+
+    if query:
+        cur.execute("SELECT Movies.MovieId, Movies.MovieName FROM Movies WHERE Movies.MovieName ILIKE %s", (f'%{query}%',))
+        result = cur.fetchall()
+        cur.close()
+    
+    return render_template("index.html", dquery=query, results=result)
