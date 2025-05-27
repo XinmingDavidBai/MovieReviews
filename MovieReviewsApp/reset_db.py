@@ -32,7 +32,7 @@ def reset_db():
     cur = conn.cursor()
     try:   
         cur.execute("""
-            DROP TABLE Movies, Crew, Actors, Reviews, Users;
+            DROP TABLE Movies, Crew, Actors, Reviews;
         """)
     except Exception as err:
         print(err)
