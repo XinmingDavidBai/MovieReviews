@@ -10,13 +10,12 @@ async function handleSearch(event) {
         resultsContainer.innerHTML = '';
         return;
     }
-
     // makes a GET request to the 'search' route in flask. We wait until we get a response
     const response = await fetch(`/search?text=${text}`);
 
     // gets the json data and produces a javascript object
     const data = await response.json();
-
+    
     // if we the data is empty we didn't get a match.
     if (data.length === 0) {
         resultsContainer.innerHTML = `<p>No results found.</p>`;

@@ -14,3 +14,5 @@ def search():
     results = search_movies(query) if query else []
     return jsonify(results)
 
+
+
