@@ -10,7 +10,7 @@ def index():
 
 @app.route('/search')
 def search():
-    query = request.args.get('query', '').strip()
+    query = request.args.get('text', '').strip()
     results = search_movies(query) if query else []
     return jsonify(results)
 

@@ -34,7 +34,7 @@ def movies_with_actors():
 def search_movies(query):
     cur = conn.cursor()
     cur.execute(
-        "SELECT movieid, moviename FROM movies WHERE moviename ILIKE %s",
+        "SELECT Movies.MovieId, Movies.MovieName, round(avg(Reviews.Rating), 1) FROM Movies LEFT JOIN Reviews ON Movies.MovieId = Reviews.MovieId WHERE moviename ILIKE %s GROUP BY Movies.MovieId, Movies.MovieName",
         (f"%{query}%",)
     )
     results = cur.fetchall()
