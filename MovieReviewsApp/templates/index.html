@@ -4,6 +4,7 @@
     <title>Movie web app</title>
     <script src="{{ url_for('static', filename='search.js') }}" defer></script>
     <script src="{{ url_for('static', filename='review.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='common.js') }}" defer></script>
 </head>
 <body>
     <h1>Search Movies</h1>
@@ -16,6 +17,14 @@
         <input type="number" name="rating" min="1" max="10" placeholder="rating" required>
         <button type="submit">Submit</button>
     </form>
+
+    <form id="common-actors">
+        <h2>Movies with common actors</h2>
+        <input type="number" name="movieId1" id="movieId1" placeholder="movieId" required>
+        <input type="number" name="movieId2" id="movieId2" placeholder="movieId" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="common-actors-results"></div>
 </body>
 </html>
 

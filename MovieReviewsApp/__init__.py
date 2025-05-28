@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from .db import cur, conn
-from .queries import search_movies, get_movie_rating, insert_review
+from .queries import search_movies, get_movie_rating, insert_review, get_common_actors
 
 app = Flask(__name__)
 
@@ -25,5 +25,16 @@ def get_movie(movie_id):
     movie = get_movie_rating(movie_id)
     return jsonify(movie)
 
+@app.route('/actors')
+def in_common_actors():
+    movie_id1 = request.args.get('movieId1', '').strip()
+    movie_id2 = request.args.get('movieId2', '').strip()
+    
+    if movie_id1 and movie_id2:
+        result = get_common_actors(movie_id1, movie_id2)
+    else:
+        result = []
+    
+    return jsonify(result)
 
 

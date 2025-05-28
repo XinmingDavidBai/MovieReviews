@@ -18,7 +18,7 @@ def search_movies(text):
     # Filter using regex on movie name
     return [movie for movie in movies if regex.search(movie[1])]
 
-def get_movie_rating(movie_id):
+def get_movie_rating(movieId):
     cur = conn.cursor()
     cur.execute(
         "SELECT Movies.MovieId, Movies.MovieName, round(avg(Reviews.Rating), 1) "
@@ -26,7 +26,7 @@ def get_movie_rating(movie_id):
         "LEFT JOIN Reviews ON Movies.MovieId = Reviews.MovieId "
         "WHERE Movies.MovieId = %s "
         "GROUP BY Movies.MovieId, Movies.MovieName",
-        (movie_id,)
+        (movieId,)
     )
     movie = cur.fetchone()
     cur.close()
@@ -40,4 +40,23 @@ def insert_review(data):
     )
     conn.commit()
     cur.close()
+
+#SELECT CrewId
+#FROM actors
+#WHERE MovieId = %s OR MovieId = %s
+#GROUP BY CrewId
+#HAVING COUNT(DISTINCT MovieId) = 2;
+
+def get_common_actors(movieId1, movieId2):
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT actors.CrewId, crew.crewname FROM actors "
+        "LEFT JOIN crew ON crew.crewid = actors.crewid WHERE actors.MovieId = %s OR actors.MovieId = %s "
+        "GROUP BY actors.crewId, crew.crewname HAVING COUNT(DISTINCT actors.MovieId) = 2", 
+        (movieId1, movieId2)
+    )
+    crew = cur.fetchall()
+    cur.close()
+
+    return crew
 

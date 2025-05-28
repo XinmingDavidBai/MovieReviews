@@ -53,17 +53,9 @@ def create_tables():
             FOREIGN KEY (MovieId) REFERENCES Movies(MovieId)
         );
     """)
-    #cur.execute("""
-    #    CREATE TABLE IF NOT EXISTS Users (
-    #        UserId SERIAL PRIMARY KEY,
-    #        UserName TEXT UNIQUE NOT NULL,
-    #        Password TEXT NOT NULL
-    #    );
-    #""")
     cur.execute("""
         CREATE TABLE IF NOT EXISTS Reviews (
             ReviewId SERIAL PRIMARY KEY,
-            Text TEXT,
             Rating int NOT NULL,
             MovieId int NOT NULL,
             FOREIGN KEY (MovieId) REFERENCES Movies(MovieId)
