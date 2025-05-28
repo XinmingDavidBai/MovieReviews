@@ -41,12 +41,6 @@ def insert_review(data):
     conn.commit()
     cur.close()
 
-#SELECT CrewId
-#FROM actors
-#WHERE MovieId = %s OR MovieId = %s
-#GROUP BY CrewId
-#HAVING COUNT(DISTINCT MovieId) = 2;
-
 def get_common_actors(movieId1, movieId2):
     cur = conn.cursor()
     cur.execute(
